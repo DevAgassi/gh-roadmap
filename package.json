@@ -4,7 +4,7 @@
   "private": true,
   "description": "gh CLI extension: keep a GitHub Project board in sync with ROADMAP.md",
   "type": "module",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "node": ">=20"
   },

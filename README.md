@@ -25,25 +25,50 @@ You plan in `ROADMAP.md` — stages, epics, features, dependencies — and `gh r
 
 ## Install
 
-```bash
-gh extension install DevAgassi/gh-roadmap
-gh extension upgrade roadmap      # later, to update
-```
-
-The repository is private: installing requires read access to it, through your `gh` login.
-
-## Quick start
-
-In the root of a repository that is already on GitHub:
+Once per machine:
 
 ```bash
-gh roadmap init            # creates roadmap.config.json, ROADMAP.md, the Project, columns and views
-# edit roadmap.config.json (modules) and ROADMAP.md (stages, epics, features)
-gh roadmap sync --dry-run  # validates ROADMAP.md without touching GitHub
-gh roadmap sync            # creates/updates issues and the board
+gh auth refresh -s project                  # allow gh to manage Projects
+gh extension install DevAgassi/gh-roadmap   # install the extension
+gh roadmap --version                        # check it works
 ```
 
-`init` ends with a short checklist of settings the GitHub API cannot change (the column for newly added items, grouping the `By module` view by Module, hiding unused deployment columns). Do them once in the browser.
+Update later with `gh extension upgrade roadmap`.
+
+## Add to a new project
+
+Run in the root of a repository that is already pushed to GitHub:
+
+1. **Create the board and starter files**
+
+   ```bash
+   gh roadmap init
+   ```
+
+   Creates `roadmap.config.json` and `ROADMAP.md` (only if missing), the Project with status columns, the `Module` / `Level` fields and the views. Pass `--title "My Project"` to name the Project, `--repo owner/name` if the remote can't be detected.
+
+2. **Describe the modules** in `roadmap.config.json` → `modules` (code = feature ID prefix, e.g. `"INV": { "name": "inventory", "color": "16a34a" }`).
+
+3. **Write the plan** in `ROADMAP.md`: stages, one epic per module and stage, features with dependencies (see [ROADMAP.md format](#roadmapmd-format)).
+
+4. **Sync**
+
+   ```bash
+   gh roadmap sync --dry-run   # validate the file, nothing is written
+   gh roadmap sync             # create issues, sub-issues, dependencies and board cards
+   ```
+
+5. **Finish the board in the browser** — `init` prints a short checklist of settings the GitHub API cannot change: the column for newly added items, grouping `By module` by Module, hiding deployment columns you don't use yet.
+
+6. **Commit** `roadmap.config.json` and `ROADMAP.md`. If you use Prettier, add `ROADMAP.md` to `.prettierignore` (table alignment breaks the format).
+
+After that, every plan change is: edit `ROADMAP.md` → `gh roadmap sync` → commit.
+
+Optional: add a script to the project's `package.json` so the team doesn't need to remember the command:
+
+```json
+{ "scripts": { "roadmap:sync": "gh roadmap sync" } }
+```
 
 ## Commands
 
@@ -130,3 +155,7 @@ gh extension install .       # run your local checkout as `gh roadmap`
 ```
 
 The code has no npm dependencies: `src/github.mjs` calls the `gh` CLI, which handles authentication.
+
+## License
+
+[MIT](LICENSE)
