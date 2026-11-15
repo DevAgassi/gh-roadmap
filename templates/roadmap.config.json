@@ -1,0 +1,11 @@
+{
+  "repo": "{{repo}}",
+  "roadmap": "ROADMAP.md",
+  "project": {
+    "title": "{{title}}"
+  },
+  "modules": {
+    "PLT": { "name": "platform", "color": "6b7280" }
+  },
+  "links": []
+}

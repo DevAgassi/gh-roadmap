@@ -1,0 +1,17 @@
+{
+  "name": "gh-roadmap",
+  "version": "0.1.0",
+  "private": true,
+  "description": "gh CLI extension: keep a GitHub Project board in sync with ROADMAP.md",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "gh-roadmap": "src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
