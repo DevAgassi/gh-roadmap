@@ -94,13 +94,13 @@ gh roadmap sync            # creates/updates issues and the board
 
 ## ROADMAP.md format
 
-```markdown
-​```mermaid
+~~~markdown
+```mermaid
 flowchart TB
   subgraph S1["Stage 1 · Foundation"]
     E_PLT_S1["PLT · Platform"]
   end
-​```
+```
 
 <!-- epics:start -->
 <!-- epics:end -->
@@ -110,7 +110,7 @@ flowchart TB
 | PLT-01 | E_PLT_S1 | Repository setup | — | todo | |
 | PLT-02 | E_PLT_S1 | CI pipeline | PLT-01 | todo | |
 | PLT-03 | E_PLT_S1 | Docs site | PLT-01…PLT-02 | dropped | |
-```
+~~~
 
 - **Stages:** Mermaid subgraphs `subgraph S<n>["Stage <n> · <name>"]`.
 - **Epics:** Mermaid nodes `E_<MODULE>_S<n>["<MODULE> · <title>"]`, one per module and stage.
